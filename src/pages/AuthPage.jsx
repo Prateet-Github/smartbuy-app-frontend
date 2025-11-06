@@ -1,11 +1,21 @@
 import { useState } from "react";
 import Eye from "../components/Eye.jsx";
+import { useAuth } from "../../contexts/authContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [isTypingPassword, setIsTypingPassword] = useState(false);
   const [currentState, setCurrentState] = useState("Sign Up");
   const [resetPasswordState, setResetPasswordState] = useState(false);
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { signIn, signUp } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleMouseMove = (e) => {
     setCursor({ x: e.clientX, y: e.clientY });
@@ -20,12 +30,29 @@ const AuthPage = () => {
     setResetPasswordState(!resetPasswordState);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (resetPasswordState) {
       alert("Password reset link sent to your email!");
     } else {
-      alert(`${currentState} form submitted!`);
+      try {
+        if (currentState === "Sign Up") {
+          console.log("Attempting sign up...");
+          await signUp(username, email, password);
+          console.log("Sign up successful!");
+          alert("Account created successfully!");
+        } else {
+          console.log("Attempting sign in...");
+          await signIn(email, password);
+          console.log("Sign in successful!");
+          alert("Logged in successfully!");
+        }
+        console.log("About to navigate to home");
+        navigate("/");
+      } catch (error) {
+        console.error("Auth error:", error.message);
+        alert(`Authentication failed: ${error.message}`);
+      }
     }
   };
 
@@ -138,12 +165,16 @@ const AuthPage = () => {
                       type="text"
                       placeholder="Username"
                       className="mt-10 border-b-2"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                     />
                     <input
                       type="email"
                       placeholder="Email"
                       className="mt-10 border-b-2"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                     <input
@@ -152,6 +183,8 @@ const AuthPage = () => {
                       onFocus={() => setIsTypingPassword(true)}
                       onBlur={() => setIsTypingPassword(false)}
                       className="border-b-2 mt-10"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                   </>
@@ -168,6 +201,8 @@ const AuthPage = () => {
                       type="email"
                       placeholder="Email"
                       className="mt-10 border-b-2"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                     <input
@@ -176,9 +211,10 @@ const AuthPage = () => {
                       onFocus={() => setIsTypingPassword(true)}
                       onBlur={() => setIsTypingPassword(false)}
                       className="border-b-2 mt-10"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
-
                     <button
                       type="button"
                       onClick={toggleResetPassword}
