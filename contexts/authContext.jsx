@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Safe JSON parse
   const safeParse = (value) => {
@@ -29,16 +30,22 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUser = safeParse(localStorage.getItem("user"));
+
     if (token && storedUser) {
       setUser(storedUser);
     }
+    setLoading(false);
   }, []);
 
   // Helper: handle login/register success
   const handleAuthSuccess = (data) => {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-    updateUser(data.user);
+    // Your backend returns: { _id, username, email, token }
+    // Extract token and separate user data
+    const { token, ...userData } = data;
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(userData));
+    updateUser(userData);
   };
 
   const signUp = async (username, email, password) => {
@@ -71,11 +78,17 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser: updateUser, signUp, signIn, signOut }}
+      value={{ user, setUser: updateUser, signUp, signIn, signOut, loading }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
