@@ -6,7 +6,8 @@ const Hero2 = () => {
 
         <div className="w-1/2 flex flex-col justify-center pl-10">
           <h1 className="text-5xl font-extrabold mb-6">
-            Get personalized device recommendations
+            Get <span className="bg-clip-text bg-gradient-to-r from-white via-gray-00 to-blue-200 text-transparent">
+              personalized </span>device recommendations
           </h1>
           <p className="text-gray-300 text-lg leading-relaxed max-w-md">
             Answer a few questions about your preferences and budget, and we'll
@@ -23,7 +24,7 @@ const Hero2 = () => {
           <img
             src="./25u.webp"
             alt="device"
-            className="rounded-2xl h-240 w-fit object-cover bg-black"
+            className="rounded-2xl h-180 w-fit object-cover bg-black"
           />
         </div>
       </div>

@@ -1,4 +1,8 @@
+import { useAuth } from "../../../contexts/authContext";
+
 const Hero = () => {
+  const { user } = useAuth();
+
   return (
     <div className="flex items-center justify-center h-screen  border-b border-gray-700 shadow-lg">
       <div className="flex items-center max-w-6xl mx-auto px-8 gap-8">
@@ -14,7 +18,11 @@ const Hero = () => {
         {/* Right side - Text */}
         <div className="w-1/2 flex flex-col justify-center">
           <h1 className="text-5xl font-extrabold mb-6">
-            Thinking to buy a new device?
+            Hi,{" "}
+            <span className="bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-600 text-transparent">
+              {user?.username}
+            </span>{" "}
+            thinking to buy a new device?
           </h1>
           <p className="text-gray-300 text-lg leading-relaxed max-w-md">
             We'll help you choose the best device suited for your needs —

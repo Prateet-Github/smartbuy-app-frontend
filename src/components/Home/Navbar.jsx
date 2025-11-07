@@ -34,8 +34,8 @@ const Navbar = () => {
       <nav className="flex z-50 justify-between items-center backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl py-3 px-6 fixed w-11/12 max-w-7xl mt-6 rounded-full">
         {/* Logo */}
         <Link to="/" className="flex-shrink-0">
-          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-purple-200 text-2xl font-extrabold tracking-widest uppercase drop-shadow-2xl select-none">
-            SMARTBUY
+          <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-orange-600 text-2xl font-bold tracking-widest uppercase drop-shadow-2xl select-none">
+            Smartbuy
           </h1>
         </Link>
 
@@ -153,7 +153,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <button className="px-5 rounded-3xl bg-white/30 text-white border border-white/40 hover:bg-white/40 transition-all text-sm">
+                <button className="px-5 py-2  focus:ring-white/50 focus:bg-white/40 transition-all duration-300 rounded-3xl bg-white/30 text-white border border-white/40 hover:bg-white/40 text-sm">
                   Sign Up
                 </button>
               </Link>
