@@ -61,14 +61,11 @@ const AuthPage = () => {
       className="flex flex-col h-screen bg-gray-100"
       onMouseMove={handleMouseMove}
     >
-      <nav className="h-16 bg-black flex items-center justify-start px-8">
-        <h1
-          className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-500 to-gray-600 
-                 text-2xl font-extrabold tracking-widest uppercase drop-shadow-lg select-none"
-        >
-          Tech Advisor
+      {/* <nav className="flex z-50 bg-black  items-center backdrop-blur-xl shadow-2xl py-3 px-6 fixed w-11/12 max-w-6xl mt-4 rounded-full ml-20">
+        <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-purple-200 text-2xl font-extrabold tracking-widest uppercase drop-shadow-2xl select-none">
+          SMARTBUY
         </h1>
-      </nav>
+      </nav> */}
 
       <div className="flex flex-1">
         {/* LEFT SIDE: Characters */}

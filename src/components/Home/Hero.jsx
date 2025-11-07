@@ -3,7 +3,7 @@ const Hero = () => {
     <div className="flex items-center justify-center h-screen  border-b border-gray-700 shadow-lg">
       <div className="flex items-center max-w-6xl mx-auto px-8 gap-8">
         {/* Left side - Image */}
-        <div className="w-1/2 flex justify-center">
+        <div className="w-1/2 flex justify-center mt-14">
           <img
             src="./pro.webp"
             alt="device"

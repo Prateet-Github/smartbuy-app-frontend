@@ -45,10 +45,10 @@ const Navbar = () => {
             Smart Phones
           </Link>
           <Link to="/laptop" className="hover:text-blue-200 transition-colors">
-            Laptop
+            Laptops
           </Link>
           <Link to="/earbuds" className="hover:text-blue-200 transition-colors">
-            Earbuds
+            Tablets
           </Link>
           <Link
             to="/headphones"
@@ -152,14 +152,8 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link
-                to="/login"
-                className="hover:text-blue-200 transition-colors text-sm"
-              >
-                Login
-              </Link>
-              <Link to="/signup">
-                <button className="px-5 py-2 rounded-3xl bg-white text-black font-medium hover:bg-gray-100 transition-all text-sm">
+              <Link to="/login">
+                <button className="px-5 rounded-3xl bg-white/30 text-white border border-white/40 hover:bg-white/40 transition-all text-sm">
                   Sign Up
                 </button>
               </Link>
